@@ -11,16 +11,31 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font awesome cdn link for button -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
   </head>
   <body>
     <header>
-        <nav class="w-11/12 mx-auto flex justify-between border-b-1 py-3">
-            <div class="codetalk">
-                <img src="Logo.png" alt="">
-            </div>
-            <div class="sort">sort</div>
-            <div class="blogs">bolgs</div>
-        </nav>
+      <nav
+        class="w-11/12 mx-auto flex justify-between border-b-2 border-[#17171720] py-4"
+      >
+        <div class="codetalk">
+          <!-- <img class="w-[130px]" src="Logo.png" alt="" /> -->
+          <div class="flex justify-between items-center gap-3">
+            <i class="fa-brands fa-youtube text-[40px] text-red-600"></i>
+            <h2 class="text-xl font-bold">CodeTalk18</h2>
+          </div>
+        </div>
+        <div class="sort">
+          <button class="btn btn-soft">Sort by View</button>
+        </div>
+        <div class="blogs">
+          <button class="btn bg-[#FF1F3D] text-white">Blogs</button>
+        </div>
+      </nav>
     </header>
   </body>
 </html>

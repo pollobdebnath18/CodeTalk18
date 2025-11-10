@@ -7,21 +7,31 @@ function loadCategories() {
     // 3-> send data to display categories
     .then((data) => display(data.categories));
 }
+
+//For category video section
+const categoryVideo = (id) => {
+  const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
+  console.log(url)
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => videoCategory(data.category));
+};
+
 function display(categories) {
   //get the categories
   const categoryContainer = document.getElementById("category-container");
+
   //loop the iteration array of object
   for (let cat of categories) {
     // create
     const categoryDiv = document.createElement("div");
     categoryDiv.innerHTML = `
-     <button class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white">${cat.category}</button>
+     <button class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white" onclick="categoryVideo(${cat.category_id})">${cat.category}</button>
      `;
     //append
     categoryContainer.appendChild(categoryDiv);
   }
 }
-loadCategories();
 
 //For Videos section
 function loadVideos() {
@@ -31,6 +41,7 @@ function loadVideos() {
 }
 const videoCategory = (videos) => {
   const videoContainer = document.getElementById("video-container");
+  videoContainer.innerHTML="";
   videos.forEach((video) => {
     const videoCard = document.createElement("div");
     videoCard.innerHTML = `
@@ -73,4 +84,5 @@ const videoCategory = (videos) => {
     videoContainer.appendChild(videoCard);
   });
 };
+loadCategories();
 loadVideos();

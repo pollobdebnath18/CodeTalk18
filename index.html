@@ -16,6 +16,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
+    <style>
+      .active {
+        background: bg-#FF1F3D;
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -40,14 +46,24 @@
     </header>
     <!-- Dynamic button section -->
     <section id="category-container" class="flex justify-center py-5 gap-4">
-      <button  class="btn btn-sm bg-[#FF1F3D] text-white" onclick="loadVideos()">ALl</button>
+      <button class="btn btn-sm bg-[#FF1F3D] text-white ">
+        ALl
+      </button>
     </section>
 
-    <!-- videos section -->
+    <!-- videos section
     <section
       class="w-11/12 mx-auto grid grid-cols-4 gap-5 mt-6"
       id="video-container"
     >
+      <div
+        class="col-span-full text-center flex flex-col justify-center items-center py-10"
+      >
+        <img src="Icon.png" alt="" />
+        <p class="text-3xl font-bold pt-6">
+          Oops!! Sorry, There is no content here
+        </p>
+      </div>
       <!-- <div class="card bg-base-100">
         <figure class="relative">
           <img src="https://i.ibb.co/QPNzYVy/moonlight.jpg" alt="Shoes" />
@@ -85,6 +101,22 @@
       </div> -->
     </section>
 
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+    <!-- <dialog id="video_modal" class="modal"> -->
+      <div class="modal-box">
+        <h3 class="text-lg font-bold">Hello!</h3>
+        <p class="py-4">Press ESC key or click the button below to close</p>
+        <div class="modal-action">
+          <form method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn">Close</button>
+          </form>
+        </div>
+      </div>
+    </dialog> 
+
     <script src="script/index.js"></script>
+    <script src="script/connect.js"></script>
   </body>
 </html>

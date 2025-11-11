@@ -48,10 +48,25 @@ const loadVideoDetails = (videoId) => {
     .then((data) => displayVideoDetails(data.video));
 };
 
-const displayVideoDetails=(video)=>{
-  document.getElementById('video_details').showModal();
-}
-
+const displayVideoDetails = (video) => {
+  document.getElementById("video_details").showModal();
+  const detailsContainer = document.getElementById("details_container");
+  detailsContainer.innerHTML = `
+  <div class="card bg-base-100 image-full  shadow-sm">
+  <figure>
+    <img
+      src="${video.thumbnail}" />
+  </figure>
+  <div class="card-body flex justify-center items-center py-1">
+    <h2 class="card-title">${video.title}</h2>
+     <h2 class="card-title">${video.authors[0].profile_name}</h2>
+     <h2 class="card-title">${video.others.views}</h2>
+   
+   
+  </div>
+</div>
+  `;
+};
 
 const displayVideos = (videos) => {
   console.log(videos);

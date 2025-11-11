@@ -1,3 +1,10 @@
+function removeActiveClass() {
+  const activeButtons = document.getElementsByClassName("active");
+  for (let btn of activeButtons) {
+    btn.classList.remove("active");
+  }
+}
+
 //Dynamic load  Button section  (Music , comedy , Drawing)
 const loadCategories = () => {
   //load the data
@@ -12,7 +19,11 @@ const loadCategories = () => {
 const loadVideos = () => {
   fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
     .then((res) => res.json())
-    .then((data) => displayVideos(data.videos));
+    .then((data) => {
+      removeActiveClass();
+      document.getElementById("btn-all").classList.add("active");
+      displayVideos(data.videos);
+    });
 };
 
 //Dynamic category video
@@ -20,14 +31,46 @@ const loadCategoryVideos = (id) => {
   const url = `https://openapi.programming-hero.com/api/phero-tube/category/${id}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayVideos(data.category));
+    .then((data) => {
+      const clickedButton = document.getElementById(`btn-${id}`);
+      removeActiveClass();
+      clickedButton.classList.add("active");
+      console.log(clickedButton);
+      displayVideos(data.category);
+    });
 };
+const loadVideoDetails = (videoId) => {
+  console.log(videoId);
+  const url = `https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`;
+  console.log(url);
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayVideoDetails(data.video));
+};
+
+const displayVideoDetails=(video)=>{
+  document.getElementById('video_details').showModal();
+}
+
 
 const displayVideos = (videos) => {
   console.log(videos);
   const videoContainer = document.getElementById("video-container");
 
-  videoContainer.innerHTML="";
+  videoContainer.innerHTML = "";
+
+  if (videos.length == 0) {
+    videoContainer.innerHTML = `
+    <div
+        class="col-span-full text-center flex flex-col justify-center items-center py-10"
+      >
+        <img src="Icon.png" alt="" />
+        <p class="text-3xl font-bold pt-6">
+          Oops!! Sorry, There is no content here
+        </p>
+      </div>
+    `;
+  }
   //for Each loop ( array of object)
   videos.forEach((video) => {
     const videoCard = document.createElement("div");
@@ -66,6 +109,7 @@ const displayVideos = (videos) => {
             <p class="text-sm text-gray-400">${video.others.views}</p>
           </div>
         </div>
+        <button onclick=loadVideoDetails('${video.video_id}') class="btn btn-block">Show Details</button>
       </div> 
     `;
     videoContainer.appendChild(videoCard);
@@ -80,7 +124,7 @@ const displayCategory = (categories) => {
     //create element
     const categoryDiv = document.createElement("div");
     categoryDiv.innerHTML = ` 
-          <button onclick="loadCategoryVideos(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white ">${cat.category}</button>
+          <button id="btn-${cat.category_id}" onclick="loadCategoryVideos(${cat.category_id})" class="btn btn-sm hover:bg-[#FF1F3D] hover:text-white ">${cat.category}</button>
         `;
     categoryContainer.appendChild(categoryDiv);
   }

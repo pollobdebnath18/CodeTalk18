@@ -18,7 +18,7 @@
     />
     <style>
       .active {
-        background: bg-#FF1F3D;
+        background: #ff1f3d;
         color: white;
       }
     </style>
@@ -46,7 +46,7 @@
     </header>
     <!-- Dynamic button section -->
     <section id="category-container" class="flex justify-center py-5 gap-4">
-      <button class="btn btn-sm bg-[#FF1F3D] text-white " onclick="loadVideos()">
+      <button id="btn-all" class="btn btn-sm" onclick="loadVideos()">
         ALl
       </button>
     </section>
@@ -64,7 +64,7 @@
           Oops!! Sorry, There is no content here
         </p>
       </div> -->
-    <!-- <div class="card bg-base-100">
+      <!-- <div class="card bg-base-100">
         <figure class="relative">
           <img src="https://i.ibb.co/QPNzYVy/moonlight.jpg" alt="Shoes" />
           <small
@@ -103,7 +103,7 @@
 
     <!-- Open the modal using ID.showModal() method -->
     <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
-    <!-- <dialog id="video_modal" class="modal"> -->
+    <dialog id="video_details" class="modal">
       <div class="modal-box">
         <h3 class="text-lg font-bold">Hello!</h3>
         <p class="py-4">Press ESC key or click the button below to close</p>
@@ -114,7 +114,7 @@
           </form>
         </div>
       </div>
-    </dialog> 
+    </dialog>
 
     <script src="script/index.js"></script>
     <script src="script/connect.js"></script>

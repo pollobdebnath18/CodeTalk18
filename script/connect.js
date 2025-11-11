@@ -16,8 +16,8 @@ const loadCategories = () => {
 };
 
 //Dynamic load video section
-const loadVideos = () => {
-  fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+const loadVideos = (searchText="") => {
+  fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`)
     .then((res) => res.json())
     .then((data) => {
       removeActiveClass();
@@ -116,15 +116,22 @@ const displayVideos = (videos) => {
             </h1>
             <p class="text-sm text-gray-400 flex gap-3">
               ${video.authors[0].profile_name}
-              <img class="w-6"
+              ${
+                video.authors[0].verified == true
+                  ? `<img class="w-6"
                 src="https://img.icons8.com/?size=96&id=FNbnqlDTjR45&format=gif&color=f7f7f7"
                 alt=""
-              />
+              />`
+                  : ``
+              }
+              
             </p>
             <p class="text-sm text-gray-400">${video.others.views}</p>
           </div>
         </div>
-        <button onclick=loadVideoDetails('${video.video_id}') class="btn btn-block">Show Details</button>
+        <button onclick=loadVideoDetails('${
+          video.video_id
+        }') class="btn btn-block">Show Details</button>
       </div> 
     `;
     videoContainer.appendChild(videoCard);
@@ -147,4 +154,8 @@ const displayCategory = (categories) => {
 
   //append element
 };
+document.getElementById('search-input').addEventListener('keyup', (e)=>{
+  const input = e.target.value;
+  loadVideos(input);
+})
 loadCategories();
